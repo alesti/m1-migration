@@ -32,7 +32,7 @@ Ok, a windows pops up and ask me to enable rosetta:
 
 ![rosetta install](Rosetta-install_sm.png)
 
-I denied it for the moment, but installed a universal2 version of chrome instead. 
+I denied it for the moment, but installed a universal2 binary version of chrome instead. 
 => Rosetta is not enabled by default.
 
 We use 1password, and today they released a new version which is the first which will run native on M1. I made two screenshots of the process table before and after the update.
@@ -40,15 +40,22 @@ We use 1password, and today they released a new version which is the first which
 ![1pass v7.7](1pass-7.7-is-intel_sm.png)
 ![1pass v7.8](1pass-7.8-is-arm_sm.png)
  
-That simply works - this m1 migration stuff is really boooring - so far.
+
+Same with slack and other.
+
+That simply works - this part of the m1 migration stuff is really boooring - so far.
 
 ## Docker
 
 Ok, whats up with docker? https://docs.docker.com/docker-for-mac/apple-m1/
 
-Tried with an image which uses a lot of network stuff (openvpn and wireguard, needs NET_ADMIN capabilities...) and was build for x86 - works fine, if it is run with `docker run --platform linux/amd64  -e "LALALA_DNS...` 
+Tried with an image which uses a lot of network stuff (openvpn and wireguard,
+needs NET_ADMIN capabilities...) and was build for x86 - works fine, if it is
+run with `docker run --platform linux/amd64  -e "LALALA_DNS...` 
 
-Without that flag it issues `WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested but starts anyway`.
+Without that flag it issues `WARNING: The requested image's platform
+(linux/amd64) does not match the detected host platform (linux/arm64/v8) and no
+specific platform was requested but starts anyway`.
 
 Looks good so far, need to test things like dind, but later...
 
@@ -57,7 +64,9 @@ Looks good so far, need to test things like dind, but later...
 Brew is able to run on M1 since v3.0: https://brew.sh/2021/02/05/homebrew-3.0.0/
 I running v3.0.5 and have currently 103 outdated formulae.
 
-It is not possible to simple reinstall or upgrade a formula, it will be reinstalled in `/usr/local/` (which is for x86 binaries only). I found that deleting all cached stuff helps to find the right way:
+It is not possible to simple reinstall or upgrade a formula, it will be
+reinstalled in `/usr/local/` (which is for x86 binaries only). I found that
+deleting all cached stuff helps to find the right way:
 
 `brew cleanup --prune=all`
 
@@ -73,13 +82,14 @@ You can migrate your previously installed formula list with:
   brew bundle dump
 ```
 
-So i read https://docs.brew.sh/Installation and did:
+So i read it:
 
 ```
 mkdir -p ~/tmp/x86-brew/ ; cd ~/tmp/x86-brew/ 
 brew bundle dump                              # create a list of the old stuff
 xcode-select --install                        # not sure if neccessary, but i want the cli tools native
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"                                                                           # install brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                                              # install brew
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/alesti/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"     # use the new brew binary
 which brew                                    # should sit in /opt/homebrew/bin/ now
@@ -89,7 +99,8 @@ brew bundle install ~/tmp/x86-brew/Brewfile   # This is a good moment to stare a
 This succeeded with some errors:
 
 ```
-grep Error brew-install.log                                                                                                 Error: kubernetes-cli: no bottle available!
+grep Error brew-install.log
+Error: kubernetes-cli: no bottle available!
 Error: minikube: no bottle available!
 Error: pandoc: no bottle available!
 Error: pandoc-citeproc: no bottle available!
@@ -97,33 +108,41 @@ Error: vault: no bottle available!
 Error: wireshark: no bottle available!
 ```
 
-It is possible to search which formulae are available for which arch with https://formulae.brew.sh/formula/ 
+It is possible to search which formulae are available for which arch with
+https://formulae.brew.sh/formula/ 
 
-I can decide to use the x86 builds instead, or try to build from source with `brew install --build-from-source`, but this is not supported.
+I can decide to use the x86 builds instead, or try to build from source with
+`brew install --build-from-source`, but this is not supported.
 
-I need now to clear up my PATH, while i am used to preload a lot stuff to be sure not to use the mac shipped bsd tools (instead of the gnu flavored tools my collegues with linux use in scripts).
+I need now to clear up my PATH, while i am used to preload a lot stuff to be
+sure not to use the mac shipped bsd tools (instead of the gnu flavored tools my
+collegues with linux use in scripts).
 
-PATH looks like:
+My old PATH looks messy, it is some boring work to change it:
+
 ```
 PATH=~/fcloud-tools:~/bin:/usr/local/opt/terraform@0.11/bin:/usr/local/opt/qt/bin:/usr/local/Cellar/grep/3.4/libexec/gnubin/:/usr/local/Cellar/gnu-sed/4.8/libexe    c/gnubin:/usr/local/Cellar/findutils/4.7.0/libexec/gnubin:/usr/local/opt/helm@2/bin:/usr/local/opt/gettext/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/openssl/bin:/usr/local/opt/gnu-getopt/bin:/usr/local/opt/curl/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:$HOME/.linkerd2/bin:/usr/local/texlive/2020/bin/x86_64-darwin:$HOME/go/bin
 ```
 
+Brew works, i need to remove the most stuff from the x86 directories later.
+
 ## Oh, noes!
 ### VirtualBox 
 
-will not be ported - it is not possible while VB is not an CPU emulator but an
-x86 hypervisor - it seems to need a real x86 cpu underneath. 
+will not and cannot be ported - it is simply not possible while virtualbox is
+not an CPU emulator but an x86 hypervisor - it seems to need a real x86 cpu
+underneath. 
 
-I do not use virtualbox, but sometimes vagrant, and vagrant uses VB as default
+I do not use virtualbox, but sometimes vagrant, and vagrant uses it as default
 provider, so this might be relevant for others. 
 
 ### backup&sync
 
 The migration assistant will bother googles backup&sync, it will not get that
-this is a new computer and try to sync with the data of the old one.
+this is a new computer and try to sync with the data of the old one - not a cpu arch thingie. 
 
 
-## sidenotes
+## sidenotes / resources
 
 - List of arm ready software https://isapplesiliconready.com/ - I think the best time for this side is already over
 - a little bit Rosetta https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment
