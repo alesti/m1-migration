@@ -1,13 +1,24 @@
-# M1 - mainz
+# [M1 - mainz](https://twitter.com/astielau/status/1370303446990127106)
+## I will update this guide if interesting things happen.
 
-After a some drawbacks with the delivery (UPS oopsied for the first time in history) i finally got my companys new arm powered macbook pro. 
+After a some drawbacks with the delivery (UPS oopsied for the first time in
+known history) i finally got my companys new arm powered macbook pro. 
 
-I slurped my intel mac directly into the m1 (i started to call it mainz) with the migration assistant (https://support.apple.com/en-us/HT204350).
+I slurped my intel mac directly into the m1 (i started to call it mainz) with
+the migration assistant (https://support.apple.com/en-us/HT204350).
 
-## WTF Rosetta2?
-After the first boot into the intel mac image i supposed to run into a lot of errors, but it looked like my typical desktop, my running software - what?
+![slurping](slurp.jpg)
 
-My [zsh, running in iterm2 yelled at me](https://twitter.com/astielau/status/1370120472445259779) 
+
+## WTF Rosetta2? 
+
+After the first boot into the intel mac image i supposed to
+run into a lot of errors, but it looked like my typical desktop, my running
+software - what?
+
+My [zsh, running in iterm2 yelled at
+me](https://twitter.com/astielau/status/1370120472445259779), but thats all in
+the first round.  
 
 ![iterm and zsh](first-run-iterm_sm.png)
 
@@ -99,18 +110,20 @@ PATH=~/fcloud-tools:~/bin:/usr/local/opt/terraform@0.11/bin:/usr/local/opt/qt/bi
 
 ## Oh, noes!
 ### VirtualBox 
-will not be ported - it is not possible while VB is not an CPU emulator but an x86 hypervisor - it seems to need a real x86 cpu underneath. 
 
-I do not use VB, but sometimes vagrant, and vagrant uses VB as default provider. 
+will not be ported - it is not possible while VB is not an CPU emulator but an
+x86 hypervisor - it seems to need a real x86 cpu underneath. 
+
+I do not use virtualbox, but sometimes vagrant, and vagrant uses VB as default
+provider, so this might be relevant for others. 
+
+### backup&sync
+
+The migration assistant will bother googles backup&sync, it will not get that
+this is a new computer and try to sync with the data of the old one.
 
 
+## sidenotes
 
-
-
-
-
-
-sidenotes
-https://isapplesiliconready.com/
-https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment
-the migration assistant will bother your google backup&sync, it will not get that this is a new computer and try to sync with the data of the old one.
+- List of arm ready software https://isapplesiliconready.com/ - I think the best time for this side is already over
+- a little bit Rosetta https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment
