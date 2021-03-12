@@ -146,3 +146,5 @@ this is a new computer and try to sync with the data of the old one - not a cpu 
 
 - List of arm ready software https://isapplesiliconready.com/ - I think the best time for this side is already over
 - a little bit Rosetta https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment
+
+## tbc
