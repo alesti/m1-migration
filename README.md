@@ -9,25 +9,25 @@ After the first boot into the intel mac image i supposed to run into a lot of er
 
 My [zsh, running in iterm2 yelled at me](https://twitter.com/astielau/status/1370120472445259779) 
 
-![iterm and zsh](first-run-iterm.png)
+![iterm and zsh](first-run-iterm_sm.png)
 
 Ok, sure, these binaries are x86, but are iterm and zsh already an universal2 binary? And a lot of stuff in the background also?
 Iterm (and zsh) are:
 
-![iterm is arm](iterm-is-arm.png) 
+![iterm is arm](iterm-is-arm_sm.png) 
 
 I was not sure, if Rosetta2 (the intel virtualisation) is running by default .. starting chrome …
 Ok, a windows pops up and ask me to enable rosetta:
 
-![rosetta install](Rosetta-install.png)
+![rosetta install](Rosetta-install_sm.png)
 
 I denied it for the moment, but installed a universal2 version of chrome instead. 
 => Rosetta is not enabled by default.
 
 We use 1password, and today they released a new version which is the first which will run native on M1. I made two screenshots of the process table before and after the update.
 
-![1pass v7.7](1pass-7.7-is-intel.png)
-![1pass v7.8](1pass-7.8-is-intel.png)
+![1pass v7.7](1pass-7.7-is-intel_sm.png)
+![1pass v7.8](1pass-7.8-is-arm_sm.png)
  
 That simply works - this m1 migration stuff is really boooring - so far.
 
