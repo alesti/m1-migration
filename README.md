@@ -96,6 +96,8 @@ which brew                                    # should sit in /opt/homebrew/bin/
 brew bundle install ~/tmp/x86-brew/Brewfile   # This is a good moment to stare at the cpu utilization :-)
 ```
 
+No touch-and-go sounds on this mission - there are no fans in it. I like.
+
 This succeeded with some errors:
 
 ```
@@ -146,5 +148,8 @@ this is a new computer and try to sync with the data of the old one - not a cpu 
 
 - List of arm ready software https://isapplesiliconready.com/ - I think the best time for this side is already over
 - a little bit Rosetta https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment
+- No firmware password anymore, boot modes: https://www.macworld.co.uk/how-to/how-to-m1-macs-3801104/
 
 ## tbc
+
+I will continue to add things
