@@ -47,7 +47,13 @@ That simply works - this part of the m1 migration stuff is really boooring - so 
 
 ## Docker
 
-Ok, whats up with docker? https://docs.docker.com/docker-for-mac/apple-m1/
+**Update 2021-04-16** 
+
+[M1 Docker is stable now](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+
+### Ok, whats up with docker? 
+
+https://docs.docker.com/docker-for-mac/apple-m1/
 
 Tried with an image which uses a lot of network stuff (openvpn and wireguard,
 needs NET_ADMIN capabilities...) and was build for x86 - works fine, if it is
