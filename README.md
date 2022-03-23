@@ -133,6 +133,10 @@ PATH=~/fcloud-tools:~/bin:/usr/local/opt/terraform@0.11/bin:/usr/local/opt/qt/bi
 ```
 
 Brew works, i need to remove the most stuff from the x86 directories later.
+Afterwards (in march 2022) it is possible to remove the amd64 brew stuff completly with:
+
+`for i in $(/usr/local/Homebrew/bin/brew list) ; do /usr/local/Homebrew/bin/brew uninstall $i  --ignore-dependencies ; done`
+
 
 ## Oh, noes!
 ### VirtualBox 
